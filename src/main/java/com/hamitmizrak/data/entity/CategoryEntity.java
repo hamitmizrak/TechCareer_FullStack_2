@@ -29,7 +29,7 @@ public class CategoryEntity implements Serializable {
     // ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "blog_id", unique = true, nullable = false, insertable = true, updatable = false)
+    @Column(name = "category_id", unique = true, nullable = false, insertable = true, updatable = false)
     private Long categoryId;
 
     // HEADER

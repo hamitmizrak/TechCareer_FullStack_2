@@ -1,5 +1,6 @@
 package com.hamitmizrak.business.dto;
 
+import com.hamitmizrak.auditing.AuditingAwareBaseDto;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import java.io.Serializable;
 @Builder
 @Log4j2
 // Category (1) - Blog (N)
-public class CategoryDto  implements Serializable {
+public class CategoryDto  extends AuditingAwareBaseDto implements Serializable {
 
     // Serileştirme
     public static final Long serialVersionUID=1L;
