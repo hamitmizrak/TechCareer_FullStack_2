@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 // 401:Yetkisiz Giriş
 @ResponseStatus(HttpStatus.UNAUTHORIZED)
-public class UnAuthorizedException extends RuntimeException{
-    public UnAuthorizedException(String message) {
+public class BlogUnAuthorizedException extends RuntimeException{
+    public BlogUnAuthorizedException(String message) {
         super(message);
     }
 }
