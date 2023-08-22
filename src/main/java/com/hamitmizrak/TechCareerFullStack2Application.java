@@ -3,6 +3,7 @@ package com.hamitmizrak;
 import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.util.TimeZone;
 
@@ -22,6 +23,9 @@ import java.util.TimeZone;
 
 // Spring Cache aktif etmek gerekiyor.
 // @EnableCaching
+
+// Auditin Aktif etmek
+@EnableJpaAuditing(auditorAwareRef = "auditorAwareBeanMethod")
 
 // Spring Security
 @SpringBootApplication(exclude = {
