@@ -1,5 +1,6 @@
 package com.hamitmizrak.data.entity;
 
+import com.hamitmizrak.auditing.AuditingAwareBaseEntity;
 import com.hamitmizrak.data.BlogEntityEmbeddable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,7 @@ import java.util.Date;
 @Entity
 @Table(name = "blogs")
 // Blog(N) Categories(1)
-public class BlogEntity implements Serializable {
+public class BlogEntity extends AuditingAwareBaseEntity implements Serializable {
 
     // Serileştirme
     public static final Long serialVersionUID = 1L;
