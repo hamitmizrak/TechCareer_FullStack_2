@@ -4,6 +4,7 @@ import com.hamitmizrak.auditing.AuditingAwareBaseEntity;
 import com.hamitmizrak.data.BlogEntityEmbeddable;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 // LOMBOK
 @Data
 @Log4j2
+@ToString
 
 // ENTITY
 @Entity

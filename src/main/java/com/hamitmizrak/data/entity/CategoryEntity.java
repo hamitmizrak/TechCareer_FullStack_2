@@ -3,6 +3,7 @@ package com.hamitmizrak.data.entity;
 import com.hamitmizrak.auditing.AuditingAwareBaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.annotations.CreationTimestamp;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.List;
 // LOMBOK
 @Data
 @Log4j2
+@ToString
 
 // ENTITY
 @Entity
