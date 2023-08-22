@@ -3,10 +3,7 @@ package com.hamitmizrak.data.entity;
 import com.hamitmizrak.auditing.AuditingAwareBaseEntity;
 import com.hamitmizrak.data.BlogEntityEmbeddable;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -15,9 +12,6 @@ import java.util.Date;
 
 // LOMBOK
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Log4j2
 
 // ENTITY
@@ -49,4 +43,19 @@ public class BlogEntity extends AuditingAwareBaseEntity implements Serializable 
    @Transient
     private String justJava;
     */
+
+    // RELATION
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @JoinColumn(name="category_id",nullable = false)
+    CategoryEntity relationCategoryEntity;
+
+    // Constructor (Parametresiz)
+    public BlogEntity() {
+    }
+
+    // Constructor (Parametreli)
+    public BlogEntity(BlogEntityEmbeddable blogEntityEmbeddable, CategoryEntity relationCategoryEntity) {
+        this.blogEntityEmbeddable = blogEntityEmbeddable;
+        this.relationCategoryEntity = relationCategoryEntity;
+    }
 }

@@ -2,20 +2,15 @@ package com.hamitmizrak.data.entity;
 
 import com.hamitmizrak.auditing.AuditingAwareBaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.annotations.CreationTimestamp;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 // LOMBOK
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Log4j2
 
 // ENTITY
@@ -41,4 +36,17 @@ public class CategoryEntity extends AuditingAwareBaseEntity implements Serializa
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date systemDate;
+
+    // RELATION
+    @OneToMany(mappedBy = "relationCategoryEntity",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    List<BlogEntity> relationBlogEntityList;
+
+    // Constructor(Parametresiz)
+    public CategoryEntity() {
+    }
+
+    // Constructor(Parametreli)
+    public CategoryEntity(String categoryName) {
+        this.categoryName = categoryName;
+    }
 }
