@@ -1,6 +1,6 @@
 package com.hamitmizrak.error;
 
-import com.hamitmizrak.assist.FrontEnt;
+import com.hamitmizrak.assist.FrontendUrl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
@@ -20,7 +20,7 @@ import java.util.Map;
 
 // API
 @RestController
-@CrossOrigin(origins = FrontEnt.REACT_URL)
+@CrossOrigin(origins = FrontendUrl.REACT_URL)
 public class CustomErrorHandleWebRequest implements ErrorController {
 
     // ErrorController

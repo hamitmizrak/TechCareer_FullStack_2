@@ -1,6 +1,6 @@
 package com.hamitmizrak.data;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.hamitmizrak.audit.AuditingAwareBaseEntity;
+import com.hamitmizrak.auditing.AuditingAwareBaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

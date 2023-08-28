@@ -5,6 +5,7 @@ import com.hamitmizrak.business.dto.CategoryDto;
 import com.hamitmizrak.business.services.ICategoryServices;
 import com.hamitmizrak.data.entity.CategoryEntity;
 import com.hamitmizrak.data.repository.ICategoryRepository;
+import com.hamitmizrak.exception.HamitMizrakException;
 import com.hamitmizrak.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

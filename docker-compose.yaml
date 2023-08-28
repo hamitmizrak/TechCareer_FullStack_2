@@ -2,7 +2,7 @@
 version: '3.1'
 
 services:
-  dailyapp:
+  blogapp:
     container_name: docker_blog_react
     image: docker_blog_react
     restart: always

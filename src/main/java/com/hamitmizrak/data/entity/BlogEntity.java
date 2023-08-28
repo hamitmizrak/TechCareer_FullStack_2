@@ -1,6 +1,6 @@
 package com.hamitmizrak.data.entity;
 
-import com.hamitmizrak.audit.AuditingAwareBaseEntity;
+import com.hamitmizrak.auditing.AuditingAwareBaseEntity;
 import com.hamitmizrak.data.BlogEntityEmbeddable;
 import jakarta.persistence.*;
 import lombok.Data;

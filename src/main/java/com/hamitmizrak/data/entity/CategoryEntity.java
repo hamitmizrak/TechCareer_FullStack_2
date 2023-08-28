@@ -1,6 +1,6 @@
 package com.hamitmizrak.data.entity;
 
-import com.hamitmizrak.audit.AuditingAwareBaseEntity;
+import com.hamitmizrak.auditing.AuditingAwareBaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;

@@ -5,6 +5,7 @@ import com.hamitmizrak.business.dto.BlogDto;
 import com.hamitmizrak.business.services.IBlogServices;
 import com.hamitmizrak.data.entity.BlogEntity;
 import com.hamitmizrak.data.repository.IBlogRepository;
+import com.hamitmizrak.exception.HamitMizrakException;
 import com.hamitmizrak.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
