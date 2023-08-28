@@ -18,7 +18,7 @@ public class BlogEntityEmbeddable {
     @Column(
             name = "header",
             nullable = false,
-            unique = true,
+            unique = false,
             length = 500,
             insertable = true,
             updatable = true,
