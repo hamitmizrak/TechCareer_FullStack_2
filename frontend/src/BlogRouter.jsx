@@ -5,17 +5,20 @@ import React, { Component } from 'react'
 // ROUTER
 import { Navigate, Route, Routes } from 'react-router-dom';
 
+// I18N
+import { withTranslation } from 'react-i18next';
+
 // HEADER,FOOTER,MAIN
 import Footer from './component/Footer';
 import Header from './component/Header';
 import Main from './component/Main';
 
 // CATEGORY
-import { CategoryList } from "./component/category/CategoryList";
-import { CategoryCreate } from "./component/category/CategoryCreate";
-import { CategoryView } from "./component/category/CategoryView";
-import { CategoryUpdate } from "./component/category/CategoryUpdate";
-import { withTranslation } from 'react-i18next';
+import CategoryList from './component/category/CategoryList';
+import CategoryCreate from './component/category/CategoryCreate';
+import CategoryView from './component/category/CategoryView';
+import CategoryUpdate from './component/category/CategoryUpdate';
+
 
 // CLASS COMPONENT
 class BlogRouter extends Component {
@@ -50,11 +53,10 @@ class BlogRouter extends Component {
                         <Route path='/' element={<Main />} />
 
                         {/* Blog category */}
-                        <Route path='/category/list' element={CategoryList} />
-                        <Route path='/category/create' element={CategoryCreate} />
-                        <Route path='/category/view/:id' element={CategoryView} />
-                        <Route path='/category/update/:id' element={CategoryUpdate} />
-
+                        <Route path='/category/list' element={<CategoryList/>} />
+                        <Route path='/category/create' element={<CategoryCreate/>} />
+                        <Route path='/category/view/:id' element={<CategoryView/>} />
+                        <Route path='/category/update/:id' element={<CategoryUpdate/>} />
                         {/* bad request */}
                         <Route path="*" element={<Navigate to="/" />} />
                     </Routes>
