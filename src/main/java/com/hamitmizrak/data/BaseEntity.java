@@ -1,35 +1,32 @@
 package com.hamitmizrak.data;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.hamitmizrak.audit.AuditingAwareBaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.io.Serializable;
 import java.util.Date;
 
 // LOMBOK
 @Getter
 @Setter
 
-// AUDITING
-@EntityListeners(AuditingEntityListener.class)
-
-// ENTITY
+// SUPER CLASS
 @MappedSuperclass
-public class BaseEntity  implements Serializable {
+// Json'a emir veriyoruz Buradaki date olanaları takip etme
+@JsonIgnoreProperties(value = {"created_date,updated_date"},allowGetters = true)
+@EntityListeners(AuditingEntityListener.class)
+abstract public class BaseEntity extends AuditingAwareBaseEntity {
 
-    // Serileştirme
-    public static final Long serialVersionUID = 1L;
-
-    // ID
+    // ID (Unique)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id")
+    protected Long id;
 
-    // DATE
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    private Date systemDate;
+    protected Date systemDate;
 }

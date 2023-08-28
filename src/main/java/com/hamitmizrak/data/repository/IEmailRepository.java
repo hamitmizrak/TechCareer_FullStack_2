@@ -1,14 +1,14 @@
 package com.hamitmizrak.data.repository;
 
-import com.hamitmizrak.data.entity.CategoryEntity;
+import com.hamitmizrak.data.entity.EmailEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface ICategoryRepository extends CrudRepository<CategoryEntity,Long> {
+public interface IEmailRepository extends CrudRepository<EmailEntity,Long> {
 
     // Delivered Query (Kendi sorgumu yazdım)
-    Optional<CategoryEntity> findByCategoryName(String categoryName);
+    Optional<EmailEntity> findByEmailTo (String emailTo);
 }

@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -96,7 +95,7 @@ public class CommandLineRunnerBean {
         return args -> {
             System.out.println("DATA444444444444");
             log.info("Data set oluşturulmuştur.");
-            blogCategorySave();
+            //blogCategorySave();
         }; //end retur
     } //end CommandLineRunnerBean method
 } // end class

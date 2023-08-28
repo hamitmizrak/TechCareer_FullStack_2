@@ -47,4 +47,4 @@ abstract public class AuditingAwareBaseEntity  implements Serializable {
     @LastModifiedDate
     @Column(name="updated_date")
     protected Date updatedDate;
-}
+} //end class

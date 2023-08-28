@@ -1,80 +1,72 @@
 package com.hamitmizrak.controller.api.impl;
 
-import com.hamitmizrak.assist.FrontEnt;
+import com.hamitmizrak.assist.FrontendUrl;
 import com.hamitmizrak.business.dto.CategoryDto;
 import com.hamitmizrak.business.services.ICategoryServices;
 import com.hamitmizrak.controller.api.ICategoryApi;
-import com.hamitmizrak.error.ApiResult;
-import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 // LOMBOK
-@RequiredArgsConstructor // Injection
+@RequiredArgsConstructor
 @Log4j2
 
 // API
 @RestController
+@CrossOrigin(origins = FrontendUrl.REACT_URL) // http://localhost:3000
 @RequestMapping("/category/api/v1")
-@CrossOrigin(origins = FrontEnt.REACT_URL) // http://localhost:3000
 public class CategoryApiImpl implements ICategoryApi<CategoryDto> {
 
     // Injection
     private final ICategoryServices iCategoryServices;
-    private ApiResult apiResult;
-
-    //
-    @PostConstruct
-    public void categoryPostConstruct() {
-        apiResult = new ApiResult();
-    }
 
     // CREATE
     // http://localhost:4444/category/api/v1/create
     @Override
-    @PostMapping(value = "create")
+    @PostMapping("/create")
     public ResponseEntity<?> categoryApiCreate(@Valid @RequestBody CategoryDto categoryDto) {
-        // return new ResponseEntity<>(iCategoryServices.categoryServiceCreate(categoryDto), HttpStatus.OK);
-        // return  ResponseEntity.status(HttpStatus.OK).body(iCategoryServices.categoryServiceCreate(categoryDto));
-        // return  ResponseEntity.status(200).body(iCategoryServices.categoryServiceCreate(categoryDto));
-        // return  ResponseEntity.ok().body(iCategoryServices.categoryServiceCreate(categoryDto));
-
-        // iCategoryServices.categoryServiceCreate(categoryDto);
-        // apiResult=new ApiResult("path","message",200);
-        // return  ResponseEntity.ok().body(apiResult);
         return ResponseEntity.ok(iCategoryServices.categoryServiceCreate(categoryDto));
     }
 
     // LIST
+    // http://localhost:4444/category/api/v1/list
     @Override
+    @GetMapping(value="/list")
     public ResponseEntity<List<CategoryDto>> categoryApiList() {
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(iCategoryServices.categoryServiceList());
     }
 
     // FIND
+    // http://localhost:4444/category/api/v1/find/1
     @Override
-    public ResponseEntity<CategoryDto> categoryApiFind(Long id) {
-        return null;
+    @GetMapping(value="/find/{id}")
+    public ResponseEntity<?> categoryApiFindById(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.status(200).body(iCategoryServices.categoryServiceFindById(id));
     }
 
     // UPDATE
+    // http://localhost:4444/category/api/v1/update/1
     @Override
-    public ResponseEntity<CategoryDto> categoryApiUpdate(Long id, @Valid @RequestBody CategoryDto categoryDto) {
-        return null;
+    @PutMapping(value="/update/{id}")
+    public ResponseEntity<?> categoryApiUpdate(@PathVariable(name = "id") Long id, @Valid @RequestBody CategoryDto categoryDto) {
+        return ResponseEntity.ok().body(iCategoryServices.categoryServiceUpdate(id,categoryDto));
     }
 
-    // DELETE
+    // DELETE BY ID
+    // http://localhost:4444/category/api/v1/delete/1
     @Override
-    public ResponseEntity<CategoryDto> categoryApiDelete(Long id) {
-        return null;
+    @DeleteMapping(value="/delete/{id}")
+    public ResponseEntity<?> categoryApiDeleteById(@PathVariable(name = "id") Long id) {
+        return new ResponseEntity<>(iCategoryServices.categoryServiceDeleteById(id),HttpStatus.OK);
     }
 
-    ///////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////
     // ALL DELETE
     @Override
     public ResponseEntity<String> categoryApiAllDelete() {
@@ -83,7 +75,8 @@ public class CategoryApiImpl implements ICategoryApi<CategoryDto> {
 
     // SPEED DATA
     @Override
-    public ResponseEntity<List<CategoryDto>> categoryApiSpeedData(int key) {
+    public ResponseEntity<List<CategoryDto>> categoryApiSpeedData(Long key) {
         return null;
     }
-}
+
+} //end class

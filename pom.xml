@@ -121,11 +121,11 @@
 		</dependency>
 
 		<!--postgresql-->
-		<!--<dependency>
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
-		</dependency>-->
+		</dependency>
 
 		<!--Mongo DB Kalıcı veri-->
 		<!--<dependency>
@@ -284,14 +284,14 @@
 	<build>
 		<plugins>
 			<!-- for maven -->
-			<plugin>
+			<!--<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.0.2</version>
-			</plugin>
+			</plugin>-->
 
 			<!-- for maven target 17 -->
-			<plugin>
+		<!--	<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
@@ -299,7 +299,7 @@
 					<source>17</source>
 					<target>17</target>
 				</configuration>
-			</plugin>
+			</plugin>-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

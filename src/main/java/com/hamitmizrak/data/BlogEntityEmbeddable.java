@@ -1,11 +1,11 @@
 package com.hamitmizrak.data;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Lob;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.util.Date;
 
 // LOMBOK
 @Getter
@@ -15,16 +15,32 @@ import lombok.Setter;
 public class BlogEntityEmbeddable {
 
     // HEADER
-    @Column(name = "header", length = 500, columnDefinition = "varchar(500) default 'başlık yazılmadı...'")
+    @Column(
+            name = "header",
+            nullable = false,
+            unique = true,
+            length = 500,
+            insertable = true,
+            updatable = true,
+            columnDefinition = "varchar(255) default 'blog için başlık girilmedi'")
     private String header;
 
     // CONTENT
     @Lob
+    @Column(name = "content", columnDefinition = "varchar(255) default 'blog için içerik girilmedi'")
     private String content;
-
-    // IMAGE
-    private String image;
 
     // TITLE
     private String title;
+
+    // DATE
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date systemDate;
+
+   /*
+   Javada olsun Database(Entity) olmasının
+   @Transient
+    private Object specialData;
+    */
 }
