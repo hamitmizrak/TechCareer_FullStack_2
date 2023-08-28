@@ -85,6 +85,9 @@ public class CommandLineRunnerBean {
         return args -> {
             System.out.println("CommandLineRunner Çalıştı");
             log.info("CommandLineRunner Çalıştı");
+
+            randomCategory();
+            blogCreate(0);
         };
     }
 }
