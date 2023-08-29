@@ -1,6 +1,13 @@
+// REACT
 import React, { useState } from 'react'
+
+// LANGUAGE
 import { withTranslation } from 'react-i18next'
+
+// ROUTER 
 import { useNavigate } from 'react-router-dom'
+
+// API
 import CategoryApi from '../../services/CategoryApi';
 
 
