@@ -55,16 +55,14 @@ import CategoryApi from '../../services/CategoryApi';
     console.log(newCategory);
 
     // API
-    CategoryApi.categoryApiUpdate(id,newCategory)
-    .then((response)=>{
+   try {
+      const response= await CategoryApi.categoryApiUpdate(id,newCategory)
       if (response.status===200){
         navigate('/category/list');
       }
-    })
-    .catch((err)=>{
-      console.error(err);
-    });
-
+   } catch (err) {
+    console.error(err);
+   }
   }
 
   // RETURN
