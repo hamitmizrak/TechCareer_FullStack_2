@@ -49,17 +49,14 @@ function CategoryCreate({ t }) {
       // }
       //setError(err.response.data.message);
       setError(err.response.data.validationErrors);
-
     }
-
-    // .then((response) => {
+    // CategoryApi.categoryApiCreate(newCategory).then((response) => {
     //   if (response.status === 200) {
     //     navigate('/category/list');
     //   }
     // })
     // .catch((err) => {
     //   console.error(err);
-
     // });
   }
 

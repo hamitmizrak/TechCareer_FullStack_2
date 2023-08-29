@@ -16,7 +16,6 @@ import tr from "../img/flag/tr.png"
 import en from "../img/flag/en.png"
 
 
-
 // CLASS COMPONENT
 class Header extends Component {
 
@@ -126,7 +125,6 @@ class Header extends Component {
                         </div>
                     </div>
                 </nav>
-
 
             </React.Fragment>
         ) //end return
