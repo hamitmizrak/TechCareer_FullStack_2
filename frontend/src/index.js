@@ -7,6 +7,9 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import BlogRouter from './BlogRouter';
 
+// Dil seçeneği i18n ekledim
+import './internationalization/i18nlanguage';
+
 // ROOT
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // RENDER

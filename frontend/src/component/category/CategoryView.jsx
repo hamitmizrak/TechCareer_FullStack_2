@@ -22,8 +22,8 @@ export default function CategoryView() {
   useEffect(() => {
     //1.YOL (ID)
     setID(localStorage.getItem("category_view_id"));
-    CategoryApi.categoryApiFindById(localStorage.getItem("category_view_id"))
-      //CategoryApi.categoryApiFindById(viewID.id)
+    //CategoryApi.categoryApiFindById(localStorage.getItem("category_view_id"))
+      CategoryApi.categoryApiFindById(viewID.id)
       //axios.get(`http://localhost:4444/category/api/v1/find/${id}`)
       //axios.get(`http://localhost:4444/category/api/v1/find/${viewID.id}`)
       .then((response) => {
@@ -33,7 +33,7 @@ export default function CategoryView() {
       .catch((err) => {
         console.error(err);
       });
-  })//end effect
+  },[])//end effect
 
   return (
     <div>

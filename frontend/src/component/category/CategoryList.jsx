@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import CategoryApi from '../../services/CategoryApi';
 
 // FUNCTION
-function CategoryList(props) {
+function CategoryList({ t, i18n,props}) {
 
   // REDIRECT
   let navigate = useNavigate();
@@ -14,7 +14,6 @@ function CategoryList(props) {
   const [CategoryStateApi, setCategoryStateApi] = useState([]);
 
   // I18N
-  const { t } = props;
 
   // USEEFFECT
   useEffect(() => {
@@ -81,12 +80,12 @@ function CategoryList(props) {
   //RETURN
   return (
     <React.Fragment>
-      <h1 className="text-center display-3">Category List</h1>
-      <Link to="/category/create" className="btn btn-primary">Category Ekle</Link>
+      <h1 className="text-center display-3">{t("category_list")} </h1>
+      <Link to="/category/create" className="btn btn-primary">{t("create")}</Link>
       <table className="table table-striped table-hover table-responsive">
         <thead>
           <tr>
-            <th>{props.t('id')}</th>
+            <th>{t('id')}</th>
             <th>{t("category_name")}</th>
             <th>{t("date")}</th>
             <th>{t("update")}</th>
@@ -104,19 +103,19 @@ function CategoryList(props) {
 
                 <td>
                   <Link to={`/category/update/${data.id}`}>
-                    <i onClick={() => setUpdateCategory(data)} class="fa-solid fa-pen-to-square text-primary"></i>
+                    <i onClick={() => setUpdateCategory(data)} className="fa-solid fa-pen-to-square text-primary"></i>
                   </Link>
                 </td>
 
                 <td>
                   <Link to={`/category/view/${data.id}`}>
-                    <i onClick={() => setViewCategory(data.id)} class="fa-solid fa-expand text-warning"></i>
+                    <i onClick={() => setViewCategory(data.id)} className="fa-solid fa-expand text-warning"></i>
                   </Link>
                 </td>
 
                 <td>
                   <Link to={`/category/delete}`}>
-                    <i onClick={() => setDeleteCategory(data.id)} class="fa-solid fa-trash text-danger"></i>
+                    <i onClick={() => setDeleteCategory(data.id)} className="fa-solid fa-trash text-danger"></i>
                   </Link>
                 </td>
               </tr>
