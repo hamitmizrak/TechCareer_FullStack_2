@@ -1,9 +1,11 @@
-import axios from 'axios';
+//import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { withTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom'
+import CategoryApi from '../../services/CategoryApi';
 
 // FUNCTION
-export default function CategoryList() {
+function CategoryList(props) {
 
   // REDIRECT
   let navigate = useNavigate();
@@ -11,20 +13,31 @@ export default function CategoryList() {
   // STATE
   const [CategoryStateApi, setCategoryStateApi] = useState([]);
 
+  // I18N
+  const { t } = props;
+
   // USEEFFECT
   useEffect(() => {
-    axios.get("http://localhost:4444/category/api/v1/list")
+    CategoryApi.categoryApiList()
       .then((response) => {
         console.log(response.data);
         setCategoryStateApi(response.data);
       })
       .catch((err) => { console.error(err); });
+
+    // axios.get("http://localhost:4444/category/api/v1/list")
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     setCategoryStateApi(response.data);
+    //   })
+    //   .catch((err) => { console.error(err); });
   }, []);
 
 
   // LIST
   const getListCategory = (() => {
-    axios.get("http://localhost:4444/category/api/v1/list")
+    //axios.get("http://localhost:4444/category/api/v1/list")
+    CategoryApi.categoryApiList()
       .then((response) => {
         console.log(response.data);
         setCategoryStateApi(response.data);
@@ -35,7 +48,8 @@ export default function CategoryList() {
   // DELETE
   const setDeleteCategory = ((id) => {
     if (window.confirm("Silmek istediğinizden emin misiniz ?")) {
-      axios.delete("http://localhost:4444/category/api/v1/delete/" + id)
+      //axios.delete("http://localhost:4444/category/api/v1/delete/" + id)
+      CategoryApi.categoryApiDeleteById(id)
         .then(() => {
           getListCategory();
         })
@@ -58,6 +72,12 @@ export default function CategoryList() {
     localStorage.setItem("category_view_id", id);
   }
 
+  // 'id': 'ID',
+  // 'category_name': 'Category Name',
+  // 'date': 'Date',
+  // 'update': 'Update',
+  // 'delete': 'Delete',
+  // 'view': 'View',
   //RETURN
   return (
     <React.Fragment>
@@ -66,12 +86,12 @@ export default function CategoryList() {
       <table className="table table-striped table-hover table-responsive">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>CATEGORY NAME</th>
-            <th>DATE</th>
-            <th>UPDATE</th>
-            <th>VIEW</th>
-            <th>DELETE</th>
+            <th>{props.t('id')}</th>
+            <th>{t("category_name")}</th>
+            <th>{t("date")}</th>
+            <th>{t("update")}</th>
+            <th>{t("view")}</th>
+            <th>{t("delete")}</th>
           </tr>
         </thead>
         <tbody>
@@ -83,22 +103,22 @@ export default function CategoryList() {
                 <td>{data.systemDate}</td>
 
                 <td>
-                  <Link to="/category/update">
-                  <i onClick={()=>setUpdateCategory(data)} class="fa-solid fa-pen-to-square text-primary"></i>
+                  <Link to={`/category/update/${data.id}`}>
+                    <i onClick={() => setUpdateCategory(data)} class="fa-solid fa-pen-to-square text-primary"></i>
                   </Link>
-                  </td>
+                </td>
 
                 <td>
-                <Link to="/category/view">
-                  <i onClick={()=>setViewCategory(data.id)} class="fa-solid fa-expand text-warning"></i>
+                  <Link to={`/category/view/${data.id}`}>
+                    <i onClick={() => setViewCategory(data.id)} class="fa-solid fa-expand text-warning"></i>
                   </Link>
-                  </td>
+                </td>
 
                 <td>
-                <Link to="/category/delete">
-                  <i onClick={()=>setDeleteCategory(data.id)} class="fa-solid fa-trash text-danger"></i>
+                  <Link to={`/category/delete}`}>
+                    <i onClick={() => setDeleteCategory(data.id)} class="fa-solid fa-trash text-danger"></i>
                   </Link>
-                  </td>
+                </td>
               </tr>
             )
           }
@@ -107,3 +127,6 @@ export default function CategoryList() {
     </React.Fragment>
   )
 }
+
+//i18n
+export default withTranslation()(CategoryList); 

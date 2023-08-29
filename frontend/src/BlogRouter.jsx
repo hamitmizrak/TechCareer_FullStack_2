@@ -53,7 +53,7 @@ class BlogRouter extends Component {
                         <Route path='/' element={<Main />} />
 
                         {/* Blog category */}
-                        <Route path='/category/list' element={<CategoryList/>} />
+                        <Route path='/category/list' element={<CategoryList list="category"/>} />
                         <Route path='/category/create' element={<CategoryCreate/>} />
                         <Route path='/category/view/:id' element={<CategoryView/>} />
                         <Route path='/category/update/:id' element={<CategoryUpdate/>} />

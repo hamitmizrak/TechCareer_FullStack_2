@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 // Resim
-import moon from "../img/moon.jpg"
+import moon from "../img/moon.jpg";
 
 export default class Main extends Component {
   render() {
