@@ -38,9 +38,10 @@ export default function CategoryView() {
   return (
     <div>
       <div class="card">
-        <div class="card-body">
+        <div class="card-body text-center">
         <img src={moon} alt="" style={{maxWidth:"75%"}} />
-          <h6 class="card-title"> {viewApi.categoryName}</h6>
+          <h5 class="card-title"> {viewApi.id}</h5>
+          <p class="card-title"> {viewApi.categoryName}</p>
           <p class="card-text">  {viewApi.systemDate}</p>
         </div>
       </div>

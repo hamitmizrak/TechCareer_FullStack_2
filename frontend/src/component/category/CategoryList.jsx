@@ -71,12 +71,6 @@ function CategoryList({ t, i18n,props}) {
     localStorage.setItem("category_view_id", id);
   }
 
-  // 'id': 'ID',
-  // 'category_name': 'Category Name',
-  // 'date': 'Date',
-  // 'update': 'Update',
-  // 'delete': 'Delete',
-  // 'view': 'View',
   //RETURN
   return (
     <React.Fragment>
