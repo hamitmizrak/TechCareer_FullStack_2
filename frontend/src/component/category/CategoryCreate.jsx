@@ -1,5 +1,5 @@
 // REACT
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // LANGUAGE
 import { withTranslation } from 'react-i18next'
@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom'
 // API
 import CategoryApi from '../../services/CategoryApi';
 
-
 // FUNCTION
 function CategoryCreate({ t }) {
 
@@ -19,10 +18,17 @@ function CategoryCreate({ t }) {
 
   // STATE
   const [categoryName, setCategoryName] = useState('');
-  const [validationErrors, setValidationErrors] = useState({});
+  const [error, setError] = useState();
+
+  // Dinleyiciler 
+  // categoryName her hangi bir değişiklik olduğunda error silinsin
+  useEffect(() => {
+    setError(undefined)
+  }, [categoryName]);
+
 
   // CREATE
-  const categoryCreate = (event) => {
+  const categoryCreate = async (event) => {
     // Browser'ın post için durmasını istiyorum
     event.preventDefault();
 
@@ -32,16 +38,29 @@ function CategoryCreate({ t }) {
     }
     console.log(newCategory);
 
+    setError(undefined);
     // API
-    CategoryApi.categoryApiCreate(newCategory)
-      .then((response) => {
-        if (response.status === 200) {
-          navigate('/category/list');
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    try {
+      const response = await CategoryApi.categoryApiCreate(newCategory);
+    } catch (err) {
+      //  if (err.code === '404') {
+      //   setCategoryName(err.response.data.validationErrors);
+      //   return
+      // }
+      //setError(err.response.data.message);
+      setError(err.response.data.validationErrors);
+
+    }
+
+    // .then((response) => {
+    //   if (response.status === 200) {
+    //     navigate('/category/list');
+    //   }
+    // })
+    // .catch((err) => {
+    //   console.error(err);
+
+    // });
   }
 
 
@@ -51,13 +70,7 @@ function CategoryCreate({ t }) {
     //console.log(`${name} => ${value}`);
 
     // onChange
-    setCategoryName(event.target.value);
-   
-    const backendErrorHandling={...validationErrors};
-    console.log(backendErrorHandling);
-    backendErrorHandling[name]=undefined;
-   setValidationErrors(backendErrorHandling);
-
+    setCategoryName(value)
   }
 
 
@@ -79,13 +92,16 @@ function CategoryCreate({ t }) {
             onChange={categoryOnChange}
           //onChange={(event)=>{setCategoryName(event.target.value)}}
           />
-          <span className="text-danger">asd</span>
+          {/* state hatayı bootstrap ile alert ekrana basma */}
+          {error ? <div className="alert alert-danger" role="alert">
+            {error.categoryName}
+          </div> : ""}
         </div>
-        <button 
-        type='submit' 
-        className="btn btn-primary mt-3"
-        disabled={!true}
-        onClick={categoryCreate}>{t('create')}</button>
+        <button
+          type='submit'
+          className="btn btn-primary mt-3"
+          disabled={!true}
+          onClick={categoryCreate}>{t('create')}</button>
       </form>
       <br /><br /><br /><br /><br /><br /><br /><br />
     </React.Fragment>
